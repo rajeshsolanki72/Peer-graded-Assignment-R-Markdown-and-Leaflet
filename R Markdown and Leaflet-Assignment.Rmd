@@ -1,0 +1,49 @@
+---
+title: "R Markdown and Leaflet"
+author: "Rajesh Solanki"
+date: "October 9, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Scope of the assignment
+
+Create a web page using R Markdown that features a map created with Leaflet. 
+Host your webpage on either GitHub Pages, RPubs, or NeoCities.
+Your webpage must contain the date that you created the document, and it must contain a map created with Leaflet. We would love to see you show off your creativity! 
+
+```{r}
+
+
+wonders <- c("Great Wall of China (China)"," christ the Redeemer Statue (Rio de Janeiro)","Machu Picchu (Peru)","Chichen Itza (Yucatan Peninsula, Mexico)","The Roman Colosseum (Rome)","Taj Mahal (Agra, India)")
+ 
+wiki_links <- c(
+    "<a href='https://en.wikipedia.org/wiki/Great_Wall_of_China'> The Great Wall of ChiNA</a>",    
+    "<a href='https://en.wikipedia.org/wiki/Christ_the_Redeemer_(statue)'>Christ_the_Redeemer</a>",
+    "<a href='https://en.wikipedia.org/wiki/Machu_Picchu'>Machu_Picchu</a>",
+    "<a href='https://en.wikipedia.org/wiki/Chichen_Itza'>Chichen_Itza</a>",
+    "<a href='https://en.wikipedia.org/wiki/Colosseum'>Colosseum</a>",
+    "<a href='https://en.wikipedia.org/wiki/Taj_Mahal'>The Taj Mahal</a>")
+          
+          
+lat <- c(40.4319077,-22.951871,-13.1631412,20.9635537,41.89021020000001,27.1750151)
+  
+lng <- c(116.57037489999993,-43.2111797,-72.54496289999997,-89.57687720000001,12.492230899999981,78.04215520000002)
+
+df <- data.frame(wonders, wiki_links, lat, lng)
+
+library(leaflet) 
+
+df %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(lat = lat,lng = lng, popup = wiki_links)
+
+```
+
+## Wonders of the world
+
+
